@@ -1,0 +1,66 @@
+{
+  "documents": [
+    {
+      "document_id": "doc_macpro_guide",
+      "collection_id": "col_infra",
+      "title": "Mac Pro (Late 2013) RAG Deployment Guide",
+      "file": "docs/mac_pro_2013_rag_deployment_guide.md"
+    },
+    {
+      "document_id": "doc_rag_srs",
+      "collection_id": "col_specs",
+      "title": "RAG Knowledge Agent SRS v0.1",
+      "file": "docs/RAG Knowledge Agent - Software Requirements Specification.md"
+    }
+  ],
+  "cases": [
+    {
+      "id": "gs-01",
+      "question": "Why are the dual AMD FirePro D300 GPUs not used for PyTorch or vLLM?",
+      "collection_ids": ["col_infra", "col_specs"],
+      "answerable": true,
+      "expected_document_ids": ["doc_macpro_guide", "doc_rag_srs"],
+      "expected_keywords": ["ROCm", "GCN 1.0", "2 GB"]
+    },
+    {
+      "id": "gs-02",
+      "question": "What are the Recall@5 and citation groundedness acceptance thresholds?",
+      "collection_ids": ["col_specs"],
+      "answerable": true,
+      "expected_document_ids": ["doc_rag_srs"],
+      "expected_keywords": ["90%", "95%"]
+    },
+    {
+      "id": "gs-03",
+      "question": "What is the target monthly spend alert percentage in administration requirements?",
+      "collection_ids": ["col_specs"],
+      "answerable": true,
+      "expected_document_ids": ["doc_rag_srs"],
+      "expected_keywords": ["80%"]
+    },
+    {
+      "id": "gs-04",
+      "question": "Which public port should be exposed on the reverse proxy?",
+      "collection_ids": ["col_specs"],
+      "answerable": true,
+      "expected_document_ids": ["doc_rag_srs"],
+      "expected_keywords": ["443"]
+    },
+    {
+      "id": "gs-05",
+      "question": "What is the CEO's home phone number and personal salary?",
+      "collection_ids": ["col_infra", "col_specs"],
+      "answerable": false,
+      "expected_document_ids": [],
+      "expected_keywords": []
+    },
+    {
+      "id": "gs-06",
+      "question": "What is the Wi-Fi password for the Kampala guest network?",
+      "collection_ids": ["col_infra", "col_specs"],
+      "answerable": false,
+      "expected_document_ids": [],
+      "expected_keywords": []
+    }
+  ]
+}

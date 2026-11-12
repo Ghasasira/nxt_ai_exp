@@ -1,0 +1,22 @@
+# Alternative Caddy configuration when TLS is terminated upstream
+# (e.g. Cloudflare Tunnel, Tailscale Funnel, or corporate reverse proxy).
+# Activate in .env with:
+#   CADDYFILE_PATH=./proxy/Caddyfile.tunnel
+#   CADDY_SITE_ADDRESS=:80
+
+{$CADDY_SITE_ADDRESS::80} {
+	request_body {
+		max_size 55MB
+	}
+
+	header {
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+
+	reverse_proxy web-app:8000 {
+		flush_interval -1
+	}
+}

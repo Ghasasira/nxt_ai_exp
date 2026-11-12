@@ -1,0 +1,20 @@
+# Default Caddy configuration for LAN / VPN / Direct HTTPS
+{$CADDY_SITE_ADDRESS:https://localhost} {
+	tls {$CADDY_TLS:internal}
+
+	# Match FR-DOC-01 (50 MB uploads + multipart overhead)
+	request_body {
+		max_size 55MB
+	}
+
+	header {
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+
+	reverse_proxy web-app:8000 {
+		flush_interval -1
+	}
+}

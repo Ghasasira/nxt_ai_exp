@@ -1,0 +1,21 @@
+# Local Windows development & benchmarking override.
+# Binds internal ports ONLY to loopback (127.0.0.1).
+# Usage:
+#   docker compose -f compose.yaml -f compose.dev.yaml up -d --build
+
+services:
+  web-app:
+    ports:
+      - "127.0.0.1:8000:8000"
+
+  qdrant:
+    ports:
+      - "127.0.0.1:6333:6333"
+
+  ollama:
+    ports:
+      - "127.0.0.1:11434:11434"
+
+  rag-core:
+    ports:
+      - "127.0.0.1:8001:8000"
